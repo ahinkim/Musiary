@@ -5,6 +5,7 @@ const kakaoOAuthConfig = require("../config/kakao-oAuth");
 const jwtConfig = require("../config/jwt");
 
 const verifyToken = (token) => {
+  token = token.replace("Bearer ", "");
   const decodedToken = jwt.verify(token, jwtConfig.tokenSecret);
   return decodedToken;
 };

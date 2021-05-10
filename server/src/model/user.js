@@ -9,13 +9,15 @@ const getUsers = async () => {
 };
 
 const getUserById = async (id) => {
+  console.log(id);
   const user = await UserSchema.findAll({
     where: {
       id,
     },
   });
 
-  return user;
+  if (user.length === 0) return null;
+  return user[0];
 };
 
 const getUserByUserId = async (userId) => {

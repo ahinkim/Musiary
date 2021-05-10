@@ -1,6 +1,6 @@
 const User = require("../model/user");
 
-const getDecodedUser = async (id, name) => {
+const getDecodedUser = async (id) => {
   const user = await User.getUserById(id);
   return user;
 };
