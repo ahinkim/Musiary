@@ -1,0 +1,25 @@
+{
+  "name": "musiary-server",
+  "version": "1.0.0",
+  "description": "오픈소스SW개론 수업 프로젝트 <Musiary> 애플리케이션의 백엔드입니다.",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "NODE_ENV=DEVELOPMENT nodemon src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0"
+  }
+}
