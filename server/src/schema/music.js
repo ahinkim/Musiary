@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       mood: {
         type: DataTypes.STRING(20),
-        allowNull: false, // 필수
+        allowNull: false,
       },
     },
     {
       charset: "utf8",
-      collate: "utf8_general_ci", // 한글 저장
+      collate: "utf8_general_ci",
     }
   );
   Music.associate = (db) => {

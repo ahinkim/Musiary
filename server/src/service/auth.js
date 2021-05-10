@@ -6,8 +6,8 @@ const jwtConfig = require("../config/jwt");
 
 const verifyToken = (token) => {
   token = token.replace("Bearer ", "");
-  const decodedToken = jwt.verify(token, jwtConfig.tokenSecret);
-  return decodedToken;
+
+  return jwt.verify(token, jwtConfig.tokenSecret);
 };
 
 const getAccessCode = async (code) => {
@@ -26,6 +26,7 @@ const getAccessCode = async (code) => {
       },
     }
   );
+
   return response.data.access_token;
 };
 
@@ -35,13 +36,14 @@ const getKakaoUserInfo = async (accessToken) => {
       Authorization: `Bearer ${accessToken}`,
     },
   });
+
   return data;
 };
 
 const generateToken = (userId, name) => {
   const { tokenSecret, tokenExpiresIn } = jwtConfig;
-  const token = jwt.sign({ userId, name }, tokenSecret, { expiresIn: tokenExpiresIn });
-  return token;
+
+  return jwt.sign({ userId, name }, tokenSecret, { expiresIn: tokenExpiresIn });
 };
 
 const authService = { verifyToken, getAccessCode, getKakaoUserInfo, generateToken };

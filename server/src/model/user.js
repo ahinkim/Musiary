@@ -1,32 +1,40 @@
 const { User: UserSchema } = require("../schema");
+const user = require("../schema/user");
 
 const createUser = async (user) => {
-  return await UserSchema.create(user);
+  const newUser = await UserSchema.create(user);
+  return newUser;
 };
 
 const getUsers = async () => {
-  return await UserSchema.findAll();
+  const users = await UserSchema.findAll();
+  if (!users.length) {
+    return null;
+  }
+
+  return users;
 };
 
 const getUserById = async (id) => {
-  console.log(id);
-  const user = await UserSchema.findAll({
+  const users = await UserSchema.findAll({
     where: {
       id,
     },
   });
 
-  if (user.length === 0) return null;
-  return user[0];
+  if (!users.length) return null;
+  return users[0];
 };
 
 const getUserByUserId = async (userId) => {
-  const user = await UserSchema.findAll({
+  const users = await UserSchema.findAll({
     where: {
       userId,
     },
   });
-  return user;
+
+  if (!users.length) return null;
+  return users[0];
 };
 
 const updateUser = async (user, targetId) => {

@@ -15,9 +15,11 @@ const validateUser = async (req, res, next) => {
   try {
     const { userId } = authService.verifyToken(Authorization);
     const user = await userService.getDecodedUser(userId);
+
     if (!user) {
       return res.status(statusCode.BAD_REQUEST).json(jsonResponse(responseMessage.NO_X("user")));
     }
+
     req.user = user;
     next();
   } catch (e) {
@@ -27,15 +29,18 @@ const validateUser = async (req, res, next) => {
 
 const redirectToKakaoOAuth = async (req, res) => {
   const { clientId, redirectURL } = kakaoOAuthConfig;
+
   res.redirect(`https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectURL}&response_type=code`);
 };
 
 const signInByKakao = async (req, res) => {
   const { code } = req.query;
+
   const accessToken = await authService.getAccessCode(code);
   const userInfo = await authService.getKakaoUserInfo(accessToken);
   const user = await userService.getOrCreateUser(userInfo);
   const jwtToken = authService.generateToken(user.id, user.name);
+
   res.status(statusCode.OK).json(jsonResponse(responseMessage.SIGN_IN_SUCCESS, { token: jwtToken }));
 };
 
