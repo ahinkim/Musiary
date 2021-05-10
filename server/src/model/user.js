@@ -1,7 +1,7 @@
 const { User: UserSchema } = require("../schema");
 
 const createUser = async (user) => {
-  await UserSchema.create(user);
+  return await UserSchema.create(user);
 };
 
 const getUsers = async () => {
@@ -24,7 +24,6 @@ const getUserByUserId = async (userId) => {
       userId,
     },
   });
-
   return user;
 };
 

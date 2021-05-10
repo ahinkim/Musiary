@@ -6,16 +6,16 @@ const getDecodedUser = async (id, name) => {
 };
 
 const getOrCreateUser = async (userInfo) => {
-  console.log({ userInfo });
   let user = await User.getUserByUserId(userInfo.id);
   if (user.length === 0) {
     const newUser = {
-      name: userInfo.name,
-      userId: userInfo.properties.nickname,
+      name: userInfo.properties.nickname,
+      userId: String(userInfo.id),
       profileImage: userInfo.properties.profile_image,
       type: "KAKAO",
     };
-    user = await User.createUser(newUser);
+    const newUserInfo = await User.createUser(newUser);
+    user.push(newUserInfo);
   }
   return user[0];
 };

@@ -37,7 +37,7 @@ const signInByKakao = async (req, res) => {
   const userInfo = await authService.getKakaoUserInfo(accessToken);
   const user = await userService.getOrCreateUser(userInfo);
   const jwtToken = authService.generateToken(user.id, user.name);
-  res.cookie("Authorization", jwtToken);
+  res.cookie("Authorization", jwtToken).status(statusCode.OK).json({ msg: "OK" });
 };
 
 const authController = { validateUser, signInByKakao, redirectToKakaoOAuth };
