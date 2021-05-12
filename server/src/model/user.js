@@ -33,7 +33,7 @@ const getUserByUserId = async (userId) => {
     },
   });
 
-  if (!users.length) return null;
+  if (!users.length) return users;
   return users[0];
 };
 

@@ -4,6 +4,12 @@ const postDiary = (req, res) => {};
 const deleteDiary = (req, res) => {};
 const editDiary = (req, res) => {};
 
-const diaryController = { getDiaryById, getDiaries, postDiary, deleteDiary, editDiary };
+const diaryController = {
+  getDiaryById,
+  getDiaries,
+  postDiary,
+  deleteDiary,
+  editDiary,
+};
 
 module.exports = diaryController;
