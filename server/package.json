@@ -4,7 +4,7 @@
   "description": "오픈소스SW개론 수업 프로젝트 <Musiary> 애플리케이션의 백엔드입니다.",
   "main": "src/app.js",
   "scripts": {
-    "dev": "NODE_ENV=DEVELOPMENT nodemon src/app.js"
+    "dev": "nodemon src/app.js"
   },
   "author": "",
   "license": "ISC",
