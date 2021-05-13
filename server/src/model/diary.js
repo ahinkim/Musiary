@@ -1,7 +1,7 @@
 const { Diary: DiaryScheme } = require("../schema");
 
-const createDiary = async (title, content, mood) => {
-  await DiaryScheme.create({ title, content, mood });
+const createDiary = async (title, content, mood, UserId) => {
+  return await DiaryScheme.create({ title, content, mood, UserId });
 };
 
 const getDiaryById = async (id) => {
