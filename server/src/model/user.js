@@ -17,9 +17,21 @@ const getUserById = async (id) => {
   return users[0].dataValues;
 };
 
+const getUserByUserId = async (UserId) => {
+  const user = await UserSchema.findAll({
+    where: {
+      UserId,
+    },
+  });
+
+  if (!user.length) return null;
+  return user[0].dataValues;
+};
+
 const User = {
   createUser,
   getUserById,
+  getUserByUserId,
 };
 
 module.exports = User;
