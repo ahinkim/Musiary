@@ -27,6 +27,7 @@ const updateDiary = async (diary, targetId) => {
     }
   );
 };
+
 const deleteDiaryById = async (id) => {
   await DiaryScheme.destroy({
     where: {
