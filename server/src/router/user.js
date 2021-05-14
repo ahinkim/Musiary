@@ -4,7 +4,6 @@ const userController = require("../controller/user");
 
 const router = express.Router();
 
-router.get("/:id", authController.validateUser, userController.getUserById);
-router.put("/:id", authController.validateUser, userController.editUserInfo);
+router.get("/", authController.validateUser, userController.getUser);
 
 module.exports = router;
