@@ -32,6 +32,9 @@ const updateDiary = async (diary, targetId, userId) => {
       },
     }
   );
+
+  const newDiary = await getDiaryById(targetId, userId);
+  return newDiary[0].dataValues;
 };
 
 const deleteDiaryById = async (id, userId) => {

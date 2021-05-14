@@ -56,8 +56,8 @@ const editDiary = async (req, res) => {
   const mood = await getMood(content);
   try {
     const diary = { ...req.body, mood };
-    await model.updateDiary(diary, req.params.id, req.user.id);
-    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK));
+    const newDiary = await model.updateDiary(diary, req.params.id, req.user.id);
+    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, newDiary));
   } catch (e) {
     res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
