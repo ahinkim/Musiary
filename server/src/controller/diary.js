@@ -6,7 +6,8 @@ const validation = require("../util/validation");
 
 const getDiaryById = async (req, res) => {
   try {
-    const diary = await model.getDiaryById(req.params.id);
+    //const diary = await model.getDiaryById(req.params.id, req.user.id);
+    const diary = await model.getDiaryById(req.params.id, req.user.id);
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, diary));
   } catch (e) {
     res
@@ -17,7 +18,7 @@ const getDiaryById = async (req, res) => {
 
 const getDiaries = async (req, res) => {
   try {
-    const diary = await model.getDiaries();
+    const diary = await model.getDiaries(req.user.id);
     res.status(statusCode.OK).json(diary);
   } catch (e) {
     res
@@ -50,7 +51,7 @@ const postDiary = async (req, res) => {
 
 const deleteDiary = async (req, res) => {
   try {
-    const diary = await model.deleteDiaryById(req.params.id);
+    const diary = await model.deleteDiaryById(req.params.id, req.user.id);
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, diary));
   } catch (e) {
     res
@@ -61,7 +62,7 @@ const deleteDiary = async (req, res) => {
 const editDiary = async (req, res) => {
   try {
     const diary = req.body;
-    await model.updateDiary(diary, req.params.id);
+    await model.updateDiary(diary, req.params.id, req.user.id);
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK));
   } catch (e) {
     res

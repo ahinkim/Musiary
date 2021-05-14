@@ -9,7 +9,7 @@ const getUsers = (req, res) => {};
 const getUserById = async (req, res) => {
   //userId로 가져오게 만듦
   try {
-    const User_info = await model.getUserById(req.params.id);
+    const User_info = await model.getUserById(req.params.id); //(req.params.id, req.user.id)
     res.status(statusCode.OK).json(User_info);
   } catch (e) {
     res
