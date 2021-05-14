@@ -1,6 +1,7 @@
 const responseMessage = require("../constants/responseMessage");
 const statusCode = require("../constants/statusCode");
 const model = require("../model/diary");
+const { getMood } = require("../util/httpRequest");
 const apiRequest = require("../util/httpRequest");
 const jsonResponse = require("../util/jsonResponse");
 const validation = require("../util/validation");
@@ -51,8 +52,10 @@ const deleteDiary = async (req, res) => {
   }
 };
 const editDiary = async (req, res) => {
+  const { content } = req.body;
+  const mood = await getMood(content);
   try {
-    const diary = req.body;
+    const diary = { ...req.body, mood };
     await model.updateDiary(diary, req.params.id, req.user.id);
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK));
   } catch (e) {
