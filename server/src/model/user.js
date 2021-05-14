@@ -26,10 +26,10 @@ const getUserById = async (id) => {
   return users[0];
 };
 
-const getUserByUserId = async (userId) => {
+const getUserByUserId = async (UserId) => {
   const users = await UserSchema.findAll({
     where: {
-      userId,
+      UserId,
     },
   });
 

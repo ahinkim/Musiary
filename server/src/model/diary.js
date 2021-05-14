@@ -12,8 +12,9 @@ const getDiaryById = async (id) => {
   });
 };
 
-const getDiaries = async () => {
-  return await DiaryScheme.findAll();
+const getDiariesbyUserId = async (UserId) => {
+  const diaries = await DiaryScheme.findAll({ where: { UserId } });
+  return [...diaries].map((diary) => diary.dataValues);
 };
 
 const updateDiary = async (diary, targetId) => {
@@ -37,7 +38,7 @@ const deleteDiaryById = async (id) => {
 
 const Diary = {
   createDiary,
-  getDiaries,
+  getDiariesbyUserId,
   getDiaryById,
   updateDiary,
   deleteDiaryById,

@@ -1,11 +1,20 @@
 const responseMessage = require("../constants/responseMessage");
 const statusCode = require("../constants/statusCode");
-const { createDiary } = require("../model/diary");
+const { createDiary, getDiariesbyUserId } = require("../model/diary");
 const jsonResponse = require("../util/jsonResponse");
 const validation = require("../util/validation");
 
 const getDiaryById = (req, res) => {};
-const getDiaries = (req, res) => {};
+const getDiaries = async (req, res) => {
+  const { id } = req.user;
+
+  try {
+    const diaries = await getDiariesbyUserId(id);
+    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, { diaries: diaries }));
+  } catch (e) {
+    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+  }
+};
 
 const postDiary = async (req, res) => {
   const { id } = req.user;
