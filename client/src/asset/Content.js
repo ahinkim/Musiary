@@ -4,4 +4,12 @@ export const content = {
   DIARY_PLACEHOLDER: "오늘 하루는 어땠는지 적어주세요.\n오늘 하루를 마무리하기에 좋은 노래를 추천해 드릴게요 :)",
   SAVE_AND_RECOMMEND_SONG: "저장하고 노래 추천 받기",
   DIARY_I_WROTE: "내가 썼던 일기",
+  MUSIC_I_LISTENED: "내가 들었던 노래",
+  SHORTCUT: "바로가기",
+  MY_PAGE: "마이 페이지",
+  TRENDING: "나와 같은 기분을 느끼는 사람들이 많이 듣는 노래",
+  HELLO: "안녕하세요",
+  MUSIARY: "MUSIARY입니다",
+  KAKAO_LOGIN: "카카오톡으로 간편 로그인",
+  M: "M",
 };

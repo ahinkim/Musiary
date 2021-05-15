@@ -6,7 +6,9 @@ import { Play } from "@styled-icons/boxicons-regular/Play";
 import { Pause } from "@styled-icons/boxicons-regular/Pause";
 import { FastForward } from "@styled-icons/boxicons-regular/FastForward";
 import { Rewind } from "@styled-icons/boxicons-regular/Rewind";
+import { ChatFill } from "@styled-icons/bootstrap/ChatFill";
 import styled from "styled-components";
+import { ArrowIosForwardOutline } from "@styled-icons/evaicons-outline/ArrowIosForwardOutline";
 
 const iconProps = (size) => `
   display: block;
@@ -42,6 +44,14 @@ const RewindIcon = styled(Rewind)`
   ${iconProps((props) => props.size)}
 `;
 
+const ArrowForwardIcon = styled(ArrowIosForwardOutline)`
+  ${iconProps((props) => props.size)}
+`;
+
+const ChatFillIcon = styled(ChatFill)`
+  ${iconProps((props) => props.size)}
+`;
+
 const Nothing = styled.div`
   ${iconProps((props) => props.size)}
 `;
@@ -62,6 +72,10 @@ export default function Icon({ type = "NOTHING", onClick, size = 20 }) {
       return <FastForwardIcon className size={size} onClick={onClick} />;
     case "REWIND":
       return <RewindIcon className size={size} onClick={onClick} />;
+    case "ARROW_FORWARD":
+      return <ArrowForwardIcon className size={size} onClick={onClick} />;
+    case "CHAT_FILL":
+      return <ChatFillIcon className size={size} onClick={onClick} />;
     case "NOTHING":
       return <Nothing className size={size} onClick={onClick} />;
     default:

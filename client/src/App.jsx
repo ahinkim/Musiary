@@ -7,6 +7,8 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import DiaryHistory from "./page/DiaryHistory";
 import DiaryDetail from "./page/DiaryDetail";
+import MenuPage from "./page/MenuPage";
+import MyPage from "./page/MyPage";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -43,6 +45,12 @@ function App() {
           </Route>
           <Route path="/history/diary/:id">
             <DiaryDetail />
+          </Route>
+          <Route path="/menu" exact>
+            <MenuPage />
+          </Route>
+          <Route path="/mypage" exact>
+            <MyPage />
           </Route>
         </Switch>
       </BrowserRouter>
