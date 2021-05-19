@@ -21,7 +21,7 @@ const CardWrapper = styled.div`
 `;
 
 export default function MenuPage() {
-  const createDummySong = () => ({ title: "Happy", author: "Pharrell Williams", coverImg: ExampleImg.HAPPY_COVER });
+  const createDummySong = () => ({ title: "Happy", coverImg: ExampleImg.HAPPY_COVER });
   const threeSongs = new Array(3).fill(createDummySong());
 
   return (
