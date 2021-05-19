@@ -26,10 +26,36 @@ const audioApi = new sstk.AudioApi();
 
 const getMusicByMood = async (mood) => {
   mood = moodConverter.diaryToMusic(mood);
-  const { data } = await audioApi.searchTracks({ sort: "ranking_all", moods: mood });
-  return data.map((v) => ({ src: v.assets.preview_mp3.url, title: v.title, description: v.description }));
+  const queryParams = {
+    moods: [mood],
+    sort: "bpm",
+  };
+
+  const { data } = await audioApi.searchTracks(queryParams);
+  return data.map((v) => ({
+    src: v.assets.preview_mp3.url,
+    title: v.title,
+    description: v.description,
+    waveform: v.assets.waveform.url,
+  }));
 };
 
-const apiRequest = { getMood, getMusicByMood };
+const getPopularMusicByMood = async (mood) => {
+  mood = moodConverter.diaryToMusic(mood);
+  const queryParams = {
+    moods: [mood],
+    sort: "ranking_all",
+  };
+
+  const { data } = await audioApi.searchTracks(queryParams);
+  return data.map((v) => ({
+    src: v.assets.preview_mp3.url,
+    title: v.title,
+    description: v.description,
+    waveform: v.assets.waveform.url,
+  }));
+};
+
+const apiRequest = { getMood, getMusicByMood, getPopularMusicByMood };
 
 module.exports = apiRequest;
