@@ -47,14 +47,14 @@ function ProgressBar({ progress }) {
 }
 
 export default function NowPlaying() {
-  const createDummySong = () => ({ title: "Happy", author: "Pharrell Williams", coverImg: ExampleImg.HAPPY_COVER });
-  const { title, author, coverImg } = createDummySong();
+  const createDummySong = () => ({ title: "Happy", coverImg: ExampleImg.HAPPY_COVER });
+  const { title, playTime, coverImg } = createDummySong();
   const [isPlaying, toggle] = useToggle(false);
   return (
     <NowPlayingWrapper>
       <ProgressBar progress={33} />
       <MusicWrapper>
-        <MusicItem title={title} author={author} coverImg={coverImg} />
+        <MusicItem title={title} coverImg={coverImg} />
         <MusicController>
           <Icon type="REWIND" size={28} />
           {isPlaying ? <Icon type="PAUSE" size={28} onClick={toggle} /> : <Icon type="PLAY" size={28} onClick={toggle} />}

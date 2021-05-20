@@ -7,7 +7,7 @@ import NowPlaying from "../component/NowPlaying";
 import Text from "../component/Text";
 
 export default function Trending() {
-  const createDummySong = () => ({ title: "Happy", author: "Pharrell Williams", coverImg: ExampleImg.HAPPY_COVER });
+  const createDummySong = () => ({ title: "Happy", coverImg: ExampleImg.HAPPY_COVER });
   const dummySongs = new Array(20).fill(createDummySong());
 
   return (
