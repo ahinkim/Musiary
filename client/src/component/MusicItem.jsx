@@ -21,16 +21,13 @@ const CoverImage = styled.img`
   height: 45px;
 `;
 
-export default function MusicItem({ title, author, coverImg }) {
+export default function MusicItem({ title, coverImg }) {
   return (
     <Wrapper>
       <CoverImage src={coverImg} alt="music_cover" />
       <SongInfoWrapper>
         <Text bold size={13}>
           {title}
-        </Text>
-        <Text size={12} color={color.LIGHT_GREY}>
-          {author}
         </Text>
       </SongInfoWrapper>
     </Wrapper>
