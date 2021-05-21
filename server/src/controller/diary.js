@@ -10,18 +10,24 @@ const getDiaryById = async (req, res) => {
   try {
     //const diary = await model.getDiaryById(req.params.id, req.user.id);
     const diary = await model.getDiaryById(req.params.id, req.user.id);
-    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, diary));
+    res
+      .status(statusCode.OK)
+      .json(jsonResponse(responseMessage.OK, { diary: diary }));
   } catch (e) {
-    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 
 const getDiaries = async (req, res) => {
   try {
     const diary = await model.getDiaries(req.user.id);
-    res.status(statusCode.OK).json(diary);
+    res.status(statusCode.OK).json({ diaries: diary });
   } catch (e) {
-    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 
@@ -32,14 +38,20 @@ const postDiary = async (req, res) => {
 
   if (!validation.isValidDiaryPostBody(title, content, mood)) {
     console.log(title, content, mood);
-    return res.status(statusCode.BAD_REQUEST).json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
+    return res
+      .status(statusCode.BAD_REQUEST)
+      .json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
   }
 
   try {
     const newUser = await model.createDiary(title, content, mood, id);
-    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, newUser.dataValues));
+    res
+      .status(statusCode.OK)
+      .json(jsonResponse(responseMessage.OK, newUser.dataValues));
   } catch (e) {
-    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 
@@ -48,18 +60,32 @@ const deleteDiary = async (req, res) => {
     const diary = await model.deleteDiaryById(req.params.id, req.user.id);
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, diary));
   } catch (e) {
-    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 const editDiary = async (req, res) => {
   const { content } = req.body;
   const mood = await getMood(content);
+
+  if (!validation.isValidDiaryEditBody(content, mood)) {
+    console.log(content, mood);
+    return res
+      .status(statusCode.BAD_REQUEST)
+      .json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
+  }
+
   try {
     const diary = { ...req.body, mood };
     const newDiary = await model.updateDiary(diary, req.params.id, req.user.id);
-    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, newDiary));
+    res
+      .status(statusCode.OK)
+      .json(jsonResponse(responseMessage.OK, { newDiary: newDiary }));
   } catch (e) {
-    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 

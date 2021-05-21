@@ -1,7 +1,30 @@
-const { Music: MusicScheme } = require("../schema");
+const { User: UserSchema, Music: MusicSchema } = require("../schema");
 
-const createMusic = async (title, content, mood) => {};
-const getMusicById = async (id) => {};
+const createMusic = async (id, title, src, mood) => {
+  return await MusicSchema.findOrCreate({
+    where: { id },
+    defaults: { id, title, src, mood },
+  });
+};
+
+const getMusicById = async (id) => {
+  return await MusicSchema.findAll({
+    where: {
+      id,
+    },
+  });
+};
+
+const getMusicHistory = async (id) => {
+  const [user] = await UserSchema.findAll({
+    where: { id }, //userId
+  });
+  const [music] = await MusicSchema.findAll();
+  return await user.getMusic({
+    attributes: ["id", "title", "src", "mood"],
+  });
+};
+
 const getMusics = async () => {};
 const updateMusic = async (diary, targetId) => {};
 const deleteMusicById = async (id) => {};
@@ -12,6 +35,7 @@ const Music = {
   getMusicById,
   updateMusic,
   deleteMusicById,
+  getMusicHistory,
 };
 
 module.exports = Music;

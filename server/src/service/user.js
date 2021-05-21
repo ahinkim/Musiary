@@ -4,8 +4,8 @@ const getDecodedUser = async (id) => await User.getUserById(id);
 
 const getOrCreateUser = async (userInfo) => {
   let users = await User.getUserByUserId(userInfo.id);
-
-  if (!users) return users;
+  console.log(users);
+  if (users) return users;
 
   const newUser = {
     name: userInfo.properties.nickname,

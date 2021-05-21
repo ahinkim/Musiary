@@ -4,8 +4,13 @@ const musicController = require("../controller/music");
 
 const router = express.Router();
 
-router.get("/", musicController.getMusicsByMood);
-router.put("/:id", authController.validateUser, musicController.playMusic);
-router.get("/trending", musicController.getTrendingMusicByMood);
+router.get("/", authController.validateUser, musicController.getMusicsByMood);
+//router.put("/:id", authController.validateUser, musicController.playMusic);
+router.get(
+  "/trending",
+  authController.validateUser,
+  musicController.getTrendingMusicByMood
+);
+router.get("/play", authController.validateUser, musicController.playMusic); //*****/
 
 module.exports = router;

@@ -2,18 +2,25 @@ module.exports = (sequelize, DataTypes) => {
   const Music = sequelize.define(
     "Music",
     {
-      name: {
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      title: {
         type: DataTypes.STRING(40),
         allowNull: false,
+        unique: false,
       },
-      singer: {
-        type: DataTypes.STRING(40),
+      src: {
+        type: DataTypes.STRING(200),
         allowNull: false,
         unique: false,
       },
       mood: {
         type: DataTypes.STRING(20),
         allowNull: false,
+        unique: false,
       },
     },
     {

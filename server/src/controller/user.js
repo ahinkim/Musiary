@@ -7,9 +7,13 @@ const getUser = async (req, res) => {
   const { id } = req.user;
   try {
     const userInfo = await model.getUserById(id);
-    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, userInfo));
+    res
+      .status(statusCode.OK)
+      .json(jsonResponse(responseMessage.OK, { user: userInfo }));
   } catch (e) {
-    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 
