@@ -5,12 +5,9 @@ const UserMusic = require("../model/UserMusic");
 
 const router = express.Router();
 
-router.get("/", musicController.getMusicsByMood);
-router.put("/:id", authController.validateUser, musicController.playMusic);
-router.get("/trending", musicController.getTrendingMusicByMood);
-router.get("/test", async (req, res) => {
-  const a = await UserMusic.createUserMusic(1, 1);
-  res.json({ a });
-});
+router.get("/", authController.validateUser, musicController.getMusicsByMood);
+//router.put("/:id", authController.validateUser, musicController.playMusic);
+router.get("/trending", authController.validateUser, musicController.getTrendingMusicByMood);
+router.get("/play", authController.validateUser, musicController.playMusic); //*****/
 
 module.exports = router;
