@@ -3,10 +3,7 @@ const initializer = require("./initializer");
 
 const startServer = async () => {
   process.env.NODE_ENV = //x
-    process.env.NODE_ENV &&
-    process.env.NODE_ENV.trim().toLowerCase() == "production"
-      ? "PRODUCTION"
-      : "DEVELOPMENT";
+    process.env.NODE_ENV && process.env.NODE_ENV.trim().toLowerCase() == "production" ? "PRODUCTION" : "DEVELOPMENT";
   const app = express();
   await initializer(app);
   const { SERVER_PORT } = process.env;

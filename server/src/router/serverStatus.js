@@ -14,4 +14,7 @@ router.get("/musictest", async (req, res) => {
   const musics = await apiRequest.getMusicByMood(mood);
   res.json(jsonResponse(responseMessage.OK, { musics: musics }));
 });
+
+router.get("/token", authController.signInByKakao);
+
 module.exports = router;

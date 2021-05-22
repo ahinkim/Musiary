@@ -6,7 +6,7 @@ const userService = require("../service/user");
 const jsonResponse = require("../util/jsonResponse");
 
 const validateUser = async (req, res, next) => {
-  const Authorization = req.headers.authorization;
+  const Authorization = req.cookies.LoginToken;
 
   if (!Authorization) {
     return res.status(statusCode.UNAUTHORIZED).json(jsonResponse(responseMessage.X_UNAUTHORIZED("user")));
@@ -40,8 +40,9 @@ const signInByKakao = async (req, res) => {
   const userInfo = await authService.getKakaoUserInfo(accessToken);
   const user = await userService.getOrCreateUser(userInfo);
   const jwtToken = authService.generateToken(user.id, user.name);
+  console.log("\n😀=======Token===========😀\n", jwtToken + "\n" + "😀=======================😀\n");
 
-  res.status(statusCode.OK).json(jsonResponse(responseMessage.SIGN_IN_SUCCESS, { token: jwtToken }));
+  res.status(statusCode.OK).cookie("LoginToken", jwtToken).redirect("http://localhost:3000");
 };
 
 const authController = { validateUser, signInByKakao, redirectToKakaoOAuth };
