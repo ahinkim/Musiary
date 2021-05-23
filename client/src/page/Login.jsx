@@ -5,6 +5,9 @@ import { color } from "../asset/palette";
 import Text from "../component/Text";
 import { createGlobalStyle } from "styled-components";
 import { content } from "../asset/Content";
+import useSWR from "swr";
+import ApiRequest from "../util/ApiRequest";
+import useAsync from "../hook/useAsync";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -55,7 +58,7 @@ const MusiaryCircle = styled.div`
   background-color: ${color.BLUE};
 `;
 
-const ButtonWrapper = styled.button`
+const ButtonWrapper = styled.a`
   width: 70%;
   height: 45px;
   background-color: #fef01b;
@@ -66,6 +69,8 @@ const ButtonWrapper = styled.button`
   bottom: 80px;
   padding-top: 8px;
   padding-left: 15px;
+  text-decoration: none;
+  color: black;
 `;
 const ButtonVerticleBar = styled.div`
   width: 1px;
@@ -75,9 +80,8 @@ const ButtonVerticleBar = styled.div`
 `;
 const ButtonTextWrapper = styled.div`
   width: 100%;
-  height: 40px;
-  padding-top: 5px;
-  align-items: center;
+  margin-left: 20px;
+  padding-top: 7px;
 `;
 
 export default function Login() {
@@ -99,7 +103,7 @@ export default function Login() {
           </MusiaryBox>
         </CenterWrapper>
 
-        <ButtonWrapper>
+        <ButtonWrapper href="http://localhost:8000/api/auth/kakao">
           <Icon size={27} type="CHAT_FILL" />
           <ButtonVerticleBar />
           <ButtonTextWrapper>

@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const jwtConfig = {
   tokenSecret: process.env.JWT_SECRET || "token-secret",
-  tokenExpiresIn: Number(process.env.JWT_TOKEN_EXPIRES_IN) || 86400,
+  tokenExpiresIn: 8640000000000000,
 };
 
 module.exports = jwtConfig;

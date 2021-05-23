@@ -1,3 +1,4 @@
+import React from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Trending from "./page/Trending";
 import Login from "./page/Login";
@@ -9,6 +10,7 @@ import DiaryHistory from "./page/DiaryHistory";
 import DiaryDetail from "./page/DiaryDetail";
 import MenuPage from "./page/MenuPage";
 import MyPage from "./page/MyPage";
+import Auth from "./hoc/Auth";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -23,14 +25,14 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  React.useEffect(() => {});
+
   return (
     <>
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact>
-            <Trending />
-          </Route>
+          <Route path="/" component={Auth(Trending)} exact />
           <Route path="/login" exact>
             <Login />
           </Route>
