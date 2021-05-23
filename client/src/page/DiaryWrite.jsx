@@ -6,6 +6,8 @@ import Date from "../util/Date";
 import styled from "styled-components";
 import { color } from "../asset/palette";
 import Button from "../component/Button";
+import ApiRequest from "../util/ApiRequest";
+import { useHistory } from "react-router";
 
 const Grid = styled.div`
   padding: 0 18px;
@@ -39,6 +41,8 @@ const HowsTodayText = styled(Text)`
 `;
 
 export default function DiaryWrite() {
+  const [diaryContent, setDiaryContent] = React.useState("");
+  const history = useHistory();
   return (
     <>
       <Header leftIconType="NOTHING" rightIconType="NOTHING">
@@ -48,8 +52,32 @@ export default function DiaryWrite() {
         <HowsTodayText size={18} bold={true}>
           {content.HOWS_TODAY}
         </HowsTodayText>
-        <TextArea placeholder={content.DIARY_PLACEHOLDER} />
-        <ButtonWrapper>
+        <TextArea
+          placeholder={content.DIARY_PLACEHOLDER}
+          onChange={(e) => {
+            setDiaryContent(e.target.value);
+          }}
+        />
+        <ButtonWrapper
+          onClick={() => {
+            (async () => {
+              if (window.alert("일기를 작성하시겠습니까?")) {
+                try {
+                  const res = await ApiRequest.server.post("/diary", {
+                    title: "",
+                    content: diaryContent,
+                  });
+
+                  if (res.status === 200) {
+                    history.push("/");
+                  }
+                } catch (e) {
+                  window.alert("포스팅에 실패했습니다");
+                }
+              }
+            })();
+          }}
+        >
           <Button>{content.SAVE_AND_RECOMMEND_SONG}</Button>
         </ButtonWrapper>
       </Grid>

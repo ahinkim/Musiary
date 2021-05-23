@@ -11,8 +11,8 @@ const Wrapper = styled.div`
 export default function MusicList({ list }) {
   return (
     <Wrapper>
-      {list.map(({ title, coverImg }) => (
-        <MusicItem title={title} coverImg={coverImg} />
+      {[...list].map(({ title, coverImg, src }, idx) => (
+        <MusicItem title={title} coverImg={coverImg} key={idx} src={src} />
       ))}
     </Wrapper>
   );

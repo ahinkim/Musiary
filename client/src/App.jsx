@@ -33,12 +33,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" component={Auth(Trending)} exact />
-          <Route path="/login" exact>
-            <Login />
-          </Route>
-          <Route path="/write" exact>
-            <DiaryWrite />
-          </Route>
+          <Route path="/login" component={Login} exact />
+          <Route path="/write" exact component={Auth(DiaryWrite)} />
           <Route path="/history/music" exact>
             <MusicHistory />
           </Route>
@@ -51,9 +47,7 @@ function App() {
           <Route path="/menu" exact>
             <MenuPage />
           </Route>
-          <Route path="/mypage" exact>
-            <MyPage />
-          </Route>
+          <Route path="/mypage" component={Auth(MyPage)} exact />
         </Switch>
       </BrowserRouter>
     </>

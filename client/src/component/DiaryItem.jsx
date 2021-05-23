@@ -23,12 +23,8 @@ const DiaryPreview = styled(Text)`
 export default function DiaryItem({ date, diaryContent }) {
   return (
     <Wrapper>
-      <DiaryDate size={14}>2021.04.20</DiaryDate>
-      <DiaryPreview size={13}>
-        우선은 대충 이런 글을 적었다고 가정하자우선은 대충 이런 글을 적었다고 가정하자우선은 대충 이런 글을 적었다고
-        가정하자우선은 대충 이런 글을 적었다고 가정하자우선은 대충 이런 글을 적었다고 가정하자우선은 대충 이런 글을 적었다고
-        가정하자
-      </DiaryPreview>
+      <DiaryDate size={14}>{date}</DiaryDate>
+      <DiaryPreview size={13}>{diaryContent}</DiaryPreview>
     </Wrapper>
   );
 }

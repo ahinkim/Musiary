@@ -17,7 +17,6 @@ const getMood = async (text) => {
     },
   });
 
-  console.log(res.Result[0][1]);
   return res.Result[0][1];
 };
 
@@ -28,7 +27,6 @@ const getMusicByMood = async (mood) => {
   mood = moodConverter.diaryToMusic(mood);
   const queryParams = {
     moods: [mood],
-    sort: "bpm",
   };
 
   const { data } = await audioApi.searchTracks(queryParams);

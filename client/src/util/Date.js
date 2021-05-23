@@ -13,6 +13,10 @@ const currentYYYYMMDD = (seperator = "-") => {
   return `${year}${seperator}${month}${seperator}${day}`;
 };
 
-const DateUtil = { currentYYYYMMDD };
+const removeTimeFromDate = (date) => {
+  return date.split("T")[0];
+};
+
+const DateUtil = { currentYYYYMMDD, removeTimeFromDate };
 
 export default DateUtil;

@@ -17,12 +17,12 @@ const HeaderText = styled.h1`
   vertical-align: center;
 `;
 
-function Header({ children, leftIconType, rightIconType }) {
+function Header({ children, leftIconType, rightIconType, leftOnClick, rightOnClick }) {
   return (
     <HeaderWrapper>
-      <Icon type={leftIconType} />
+      <Icon type={leftIconType} onClick={leftOnClick} />
       <HeaderText>{children}</HeaderText>
-      <Icon type={rightIconType} />
+      <Icon type={rightIconType} onClick={rightOnClick} />
     </HeaderWrapper>
   );
 }

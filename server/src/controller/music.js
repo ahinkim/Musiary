@@ -11,13 +11,9 @@ const getMusicsByMood = async (req, res) => {
   try {
     const mood = req.query.mood;
     const musics = await apiRequest.getMusicByMood(mood);
-    res
-      .status(statusCode.OK)
-      .json(jsonResponse(responseMessage.OK, { musics: musics }));
+    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, { musics: musics }));
   } catch (e) {
-    res
-      .status(statusCode.INTERNAL_SERVER_ERROR)
-      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 
@@ -26,13 +22,9 @@ const getTrendingMusicByMood = async (req, res) => {
   try {
     const mood = req.query.mood;
     const musics = await apiRequest.getMusicByMood(mood);
-    res
-      .status(statusCode.OK)
-      .json(jsonResponse(responseMessage.OK, { musics: musics.slice(0, 3) }));
+    res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, { musics: musics.slice(0, 3) }));
   } catch (e) {
-    res
-      .status(statusCode.INTERNAL_SERVER_ERROR)
-      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 
@@ -42,10 +34,7 @@ const playMusic = async (req, res) => {
   const { id, title, src, mood } = req.body;
 
   if (!validation.isValidMusicPlayBody(id, title, src, mood)) {
-    console.log(id, title, src, mood);
-    return res
-      .status(statusCode.BAD_REQUEST)
-      .json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
+    return res.status(statusCode.BAD_REQUEST).json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
   }
 
   try {
@@ -53,9 +42,7 @@ const playMusic = async (req, res) => {
     await UserMusicModel.createUserMusic(userId, id);
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK));
   } catch (e) {
-    res
-      .status(statusCode.INTERNAL_SERVER_ERROR)
-      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+    res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
   }
 };
 

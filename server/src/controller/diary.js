@@ -30,7 +30,6 @@ const postDiary = async (req, res) => {
   const mood = await apiRequest.getMood(content);
 
   if (!validation.isValidDiaryPostBody(title, content, mood)) {
-    console.log(title, content, mood);
     return res.status(statusCode.BAD_REQUEST).json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
   }
 
@@ -55,7 +54,6 @@ const editDiary = async (req, res) => {
   const mood = await getMood(content);
 
   if (!validation.isValidDiaryEditBody(content, mood)) {
-    console.log(content, mood);
     return res.status(statusCode.BAD_REQUEST).json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
   }
 

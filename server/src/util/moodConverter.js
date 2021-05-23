@@ -18,10 +18,10 @@ const diaryToMusic = (textMood) => {
       return "Sad / Nostalgic";
     }
     case "혐오": {
-      return "Aggressive";
+      return "Action / Sports";
     }
     case "분노": {
-      return "Aggresive";
+      return "Action / Sports";
     }
     case "기대": {
       return "Sci-Fi / Future";
@@ -49,7 +49,7 @@ const musicToDiary = (musicMood) => {
     case "Sad / Nostalgic": {
       return "슬픔";
     }
-    case "Aggresive": {
+    case "Action / Sports": {
       return "분노";
     }
     case "Sci-Fi / Future": {

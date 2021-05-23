@@ -8,12 +8,53 @@ const server = axios.create({
 
 const loginRequest = async () => {
   const response = await server.get("/auth/kakao");
-  console.log(response.data);
+};
+
+const getMusicHistory = async () => {
+  try {
+    const res = await server.get("/history/music");
+    return res.data;
+  } catch (e) {
+    throw new Error("error");
+  }
+};
+
+const getTodayDiary = async () => {
+  try {
+    const res = await server.get("/diary/get/today");
+    return res.data;
+  } catch (e) {
+    throw new Error("error");
+  }
+};
+
+const getDiaryHistory = async () => {
+  try {
+    const res = await server.get("/diary");
+    return res.data;
+  } catch (e) {
+    throw new Error("error");
+  }
+};
+
+const getTrendingMusic = async () => {
+  try {
+    const todayDiary = await getTodayDiary();
+
+    const res = await server.get(`/music/trending?mood=${todayDiary.diaries[0].mood}`);
+    return res.data;
+  } catch (e) {
+    throw new Error("error");
+  }
 };
 
 const ApiRequest = {
   server,
   loginRequest,
+  getMusicHistory,
+  getTodayDiary,
+  getDiaryHistory,
+  getTrendingMusic,
 };
 
 export default ApiRequest;

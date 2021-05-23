@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { content } from "../asset/Content";
 import { ExampleImg } from "../asset/ExampleImg";
@@ -23,10 +24,20 @@ const CardWrapper = styled.div`
 export default function MenuPage() {
   const createDummySong = () => ({ title: "Happy", coverImg: ExampleImg.HAPPY_COVER });
   const threeSongs = new Array(3).fill(createDummySong());
+  const history = useHistory();
 
   return (
     <>
-      <Header leftIconType="ARROW_BACK" rightIconType="MENU">
+      <Header
+        leftIconType="ARROW_BACK"
+        rightIconType="MENU"
+        leftOnClick={() => {
+          history.goBack();
+        }}
+        rightOnClick={() => {
+          history.push("/");
+        }}
+      >
         <Text size={12}>{content.MY_PAGE}</Text>
       </Header>
       <Grid>
@@ -35,7 +46,12 @@ export default function MenuPage() {
             <Text size={13} bold={true}>
               {content.DIARY_I_WROTE}
             </Text>
-            <Icon type="ARROW_FORWARD" />
+            <Icon
+              type="ARROW_FORWARD"
+              onClick={() => {
+                history.push("/history/diary");
+              }}
+            />
           </CardTitleWrapper>
           <CardWrapper>
             <DiaryItem />
@@ -48,7 +64,12 @@ export default function MenuPage() {
             <Text size={13} bold={true}>
               {content.MUSIC_I_LISTENED}
             </Text>
-            <Icon type="ARROW_FORWARD" />
+            <Icon
+              type="ARROW_FORWARD"
+              onClick={() => {
+                history.push("/history/music");
+              }}
+            />
           </CardTitleWrapper>
           <CardSongWrapper>
             <MusicList list={threeSongs} />
