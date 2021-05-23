@@ -8,16 +8,19 @@ const emotionAxios = axios.create({
 });
 
 const getMood = async (text) => {
-  const { data: res } = await emotionAxios.post("/", {
-    key: "f8a2db96-1881-45ef-a947-f896cdd56136",
-    serviceId: "11987300804",
-    argument: {
-      type: "1",
-      query: text,
-    },
-  });
-
-  return res.Result[0][1];
+  try {
+    const { data: res } = await emotionAxios.post("/", {
+      key: "f8a2db96-1881-45ef-a947-f896cdd56136",
+      serviceId: "11987300804",
+      argument: {
+        type: "1",
+        query: text,
+      },
+    });
+    return res.Result[0][1];
+  } catch (e) {
+    console.log("솔트룩스 에러");
+  }
 };
 
 sstk.setAccessToken(process.env.SHUTTERSTOCK_TOKEN);

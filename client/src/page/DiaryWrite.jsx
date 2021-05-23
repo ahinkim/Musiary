@@ -43,6 +43,7 @@ const HowsTodayText = styled(Text)`
 export default function DiaryWrite() {
   const [diaryContent, setDiaryContent] = React.useState("");
   const history = useHistory();
+
   return (
     <>
       <Header leftIconType="NOTHING" rightIconType="NOTHING">
@@ -60,22 +61,15 @@ export default function DiaryWrite() {
         />
         <ButtonWrapper
           onClick={() => {
-            (async () => {
-              if (window.alert("일기를 작성하시겠습니까?")) {
-                try {
-                  const res = await ApiRequest.server.post("/diary", {
-                    title: "",
-                    content: diaryContent,
-                  });
-
-                  if (res.status === 200) {
-                    history.push("/");
-                  }
-                } catch (e) {
-                  window.alert("포스팅에 실패했습니다");
-                }
-              }
-            })();
+            ApiRequest.server
+              .post("/diary", {
+                title: "Title",
+                content: diaryContent,
+              })
+              .then((data) => {
+                console.log({ data });
+                history.push({ pathname: "/", state: { isPost: true } });
+              });
           }}
         >
           <Button>{content.SAVE_AND_RECOMMEND_SONG}</Button>

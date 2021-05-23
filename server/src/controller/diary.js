@@ -27,7 +27,7 @@ const getDiaries = async (req, res) => {
 const postDiary = async (req, res) => {
   const { id } = req.user;
   const { title, content } = req.body;
-  const mood = await apiRequest.getMood(content);
+  const mood = "기쁨";
 
   if (!validation.isValidDiaryPostBody(title, content, mood)) {
     return res.status(statusCode.BAD_REQUEST).json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
