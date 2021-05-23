@@ -59,10 +59,8 @@ const deleteDiaryById = async (id, userId) => {
   });
 };
 
-const getDiaryOnToday = async () => {
-  const [result, metadata] = await sequelize.query(
-    "SELECT * from diaries where DATE(createdAt) = CURDATE()"
-  );
+const getDiaryOnToday = async (id) => {
+  const [result, metadata] = await sequelize.query(`SELECT * from diaries where DATE(createdAt) = CURDATE() And UserId = ${id}`);
   return result;
   // return await DiarySchema.findAll({
   //   attributes: [[Sequelize.fn("date", Sequelize.col("created_at")), "="]],
