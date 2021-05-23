@@ -8,7 +8,6 @@ const validation = require("../util/validation");
 
 const getDiaryById = async (req, res) => {
   try {
-    //const diary = await model.getDiaryById(req.params.id, req.user.id);
     const diary = await model.getDiaryById(req.params.id, req.user.id);
     res
       .status(statusCode.OK)
@@ -89,12 +88,26 @@ const editDiary = async (req, res) => {
   }
 };
 
+const getDiaryOnToday = async (req, res) => {
+  try {
+    const diary = await model.getDiaryOnToday();
+    res
+      .status(statusCode.OK)
+      .json(jsonResponse(responseMessage.OK, { diaries: diary }));
+  } catch (e) {
+    res
+      .status(statusCode.INTERNAL_SERVER_ERROR)
+      .json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
+  }
+};
+
 const diaryController = {
   getDiaryById,
   getDiaries,
   postDiary,
   deleteDiary,
   editDiary,
+  getDiaryOnToday,
 };
 
 module.exports = diaryController;

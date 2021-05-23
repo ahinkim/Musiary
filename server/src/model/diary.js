@@ -1,11 +1,24 @@
-const { Diary: DiaryScheme } = require("../schema");
-
+const { Diary: DiarySchema } = require("../schema");
+var moment = require("moment");
+var index = require("../schema/index.js");
+const Sequelize = require("sequelize"); //sequelize 연결
+const diary = require("../schema/diary");
+const db = require("../schema");
+const sequelize = db.sequelize;
+/** */
+// const seqFn = require("sequelize-fn");
+// // const config = {
+// //   dataBaseUri: "mysql://user:pass@host/test",
+// //   modelsDir: "../model",
+// // };
+// const sequelize = seqFn; //const sequelize = seqFn(config);
+/** */
 const createDiary = async (title, content, mood, UserId) => {
-  return await DiaryScheme.create({ title, content, mood, UserId });
+  return await DiarySchema.create({ title, content, mood, UserId });
 };
 
 const getDiaryById = async (id, userId) => {
-  return await DiaryScheme.findAll({
+  return await DiarySchema.findAll({
     where: {
       id,
       userId,
@@ -14,7 +27,7 @@ const getDiaryById = async (id, userId) => {
 };
 
 const getDiaries = async (userId) => {
-  return await DiaryScheme.findAll({
+  return await DiarySchema.findAll({
     where: {
       userId,
     },
@@ -23,7 +36,7 @@ const getDiaries = async (userId) => {
 
 const updateDiary = async (diary, targetId, userId) => {
   const { title, content, mood } = diary;
-  await DiaryScheme.update(
+  await DiarySchema.update(
     { title, content, mood },
     {
       where: {
@@ -38,12 +51,25 @@ const updateDiary = async (diary, targetId, userId) => {
 };
 
 const deleteDiaryById = async (id, userId) => {
-  await DiaryScheme.destroy({
+  await DiarySchema.destroy({
     where: {
       id,
       userId,
     },
   });
+};
+
+const getDiaryOnToday = async () => {
+  const [result, metadata] = await sequelize.query(
+    "SELECT * from diaries where DATE(createdAt) = CURDATE()"
+  );
+  return result;
+  // return await DiarySchema.findAll({
+  //   attributes: [[Sequelize.fn("date", Sequelize.col("created_at")), "="]],
+  //   where: {
+  //      createdAt: { lt: Sequelize.fn("CURDATE") },
+  //   },
+  // });
 };
 
 const Diary = {
@@ -52,6 +78,7 @@ const Diary = {
   getDiaryById,
   updateDiary,
   deleteDiaryById,
+  getDiaryOnToday,
 };
 
 module.exports = Diary;

@@ -9,5 +9,10 @@ router.post("/", authController.validateUser, diaryController.postDiary);
 router.get("/:id", authController.validateUser, diaryController.getDiaryById);
 router.delete("/:id", authController.validateUser, diaryController.deleteDiary);
 router.put("/:id", authController.validateUser, diaryController.editDiary);
+router.get(
+  "/get/today",
+  authController.validateUser,
+  diaryController.getDiaryOnToday
+);
 
 module.exports = router;
