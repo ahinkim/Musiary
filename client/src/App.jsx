@@ -11,6 +11,7 @@ import DiaryDetail from "./page/DiaryDetail";
 import MenuPage from "./page/MenuPage";
 import MyPage from "./page/MyPage";
 import Auth from "./hoc/Auth";
+import PlayMusic from "./page/PlayMusic";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -48,6 +49,9 @@ function App() {
             <MenuPage />
           </Route>
           <Route path="/mypage" component={Auth(MyPage)} exact />
+          <Route path="/play" exact>
+            <PlayMusic />
+          </Route>
         </Switch>
       </BrowserRouter>
     </>
