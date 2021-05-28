@@ -12,7 +12,11 @@ import DiaryItem from "../component/DiaryItem";
 import Grid from "../component/Grid";
 import Header from "../component/Header";
 import MusicList from "../component/MusicList";
+import NoMusicFunction from "../component/NoMusic";
 import Text from "../component/Text";
+import useDiaryHistory from "../hook/useDiaryHistory";
+import useMusicHistory from "../hook/useMusicHistory";
+import DateUtil from "../util/Date";
 
 const CardWrapper = styled.div`
   padding: 14px 4px 4px 4px;
@@ -25,7 +29,9 @@ export default function MenuPage() {
   const createDummySong = () => ({ title: "Happy", coverImg: ExampleImg.HAPPY_COVER });
   const threeSongs = new Array(3).fill(createDummySong());
   const history = useHistory();
-
+  const { diaries, isLoading: isDiaryLoading } = useDiaryHistory();
+  const { musicHistory, isLoading: isMusicHistoryLoading } = useMusicHistory();
+  if (isDiaryLoading || isMusicHistoryLoading) return <div></div>;
   return (
     <>
       <Header
@@ -54,8 +60,18 @@ export default function MenuPage() {
             />
           </CardTitleWrapper>
           <CardWrapper>
-            <DiaryItem />
-            <DiaryItem />
+            {diaries[diaries.length - 1] && (
+              <DiaryItem
+                date={DateUtil.removeTimeFromDate(diaries[diaries.length - 1].createdAt)}
+                diaryContent={diaries[diaries.length - 1].content}
+              />
+            )}
+            {diaries[diaries.length - 2] && (
+              <DiaryItem
+                date={DateUtil.removeTimeFromDate(diaries[diaries.length - 2].createdAt)}
+                diaryContent={diaries[diaries.length - 2].content}
+              />
+            )}
           </CardWrapper>
         </CardView>
 
@@ -72,7 +88,15 @@ export default function MenuPage() {
             />
           </CardTitleWrapper>
           <CardSongWrapper>
-            <MusicList list={threeSongs} />
+            {musicHistory.musics.length > 0 ? (
+              <MusicList
+                list={musicHistory.musics
+                  .slice(0, 3)
+                  .map((music) => ({ title: music.title, coverImg: music.waveform, src: music.src }))}
+              />
+            ) : (
+              <NoMusicFunction>{content.NO_MUSIC}</NoMusicFunction>
+            )}
           </CardSongWrapper>
         </CardView>
       </Grid>

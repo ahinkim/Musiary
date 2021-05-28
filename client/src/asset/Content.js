@@ -18,6 +18,7 @@ export const content = {
   MUSIARY: "MUSIARY입니다",
   KAKAO_LOGIN: "카카오톡으로 간편 로그인",
   M: "M",
+  NO_MUSIC: "등록된 음악이 없습니다",
 };
 
 export function getContentByMood(mood) {

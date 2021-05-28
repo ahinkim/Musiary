@@ -20,9 +20,9 @@ const DiaryPreview = styled(Text)`
   text-overflow: ellipsis;
 `;
 
-export default function DiaryItem({ date, diaryContent }) {
+export default function DiaryItem({ date, diaryContent, onClick }) {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <DiaryDate size={14}>{date}</DiaryDate>
       <DiaryPreview size={13}>{diaryContent}</DiaryPreview>
     </Wrapper>

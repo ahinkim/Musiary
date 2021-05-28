@@ -12,8 +12,10 @@ import DiaryItem from "../component/DiaryItem";
 import Grid from "../component/Grid";
 import Header from "../component/Header";
 import MusicList from "../component/MusicList";
+import NoMusicFunction from "../component/NoMusic";
 import Text from "../component/Text";
 import useDiaryHistory from "../hook/useDiaryHistory";
+import useMusicHistory from "../hook/useMusicHistory";
 import useTrendingMusic from "../hook/useTrendingMusic";
 import DateUtil from "../util/Date";
 
@@ -35,7 +37,8 @@ export default function MenuPage() {
   const history = useHistory();
   const { diaries, isLoading: isDiaryLoading } = useDiaryHistory();
   const { musics, isLoading: isMusicLoading } = useTrendingMusic();
-  if (isDiaryLoading || isMusicLoading) return <div></div>;
+  const { musicHistory, isLoading: isMusicHistoryLoading } = useMusicHistory();
+  if (isDiaryLoading || isMusicLoading || isMusicHistoryLoading) return <div></div>;
   return (
     <>
       <Header
@@ -76,7 +79,18 @@ export default function MenuPage() {
             <LittleTitleText size={12} bold={true}>
               {content.MUSIC_I_LISTENED}
             </LittleTitleText>
-            <MusicList list={oneSong} />
+
+            {musicHistory.musics.length > 0 ? (
+              <MusicList
+                list={musicHistory.musics[musicHistory.musics.length - 1].map((music) => ({
+                  title: music.title,
+                  coverImg: music.waveform,
+                  src: music.src,
+                }))}
+              />
+            ) : (
+              <NoMusicFunction>{content.NO_MUSIC}</NoMusicFunction>
+            )}
           </CardWrapper>
         </CardView>
 
