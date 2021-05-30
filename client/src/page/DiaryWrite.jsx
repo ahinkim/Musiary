@@ -67,7 +67,6 @@ export default function DiaryWrite() {
                 content: diaryContent,
               })
               .then((data) => {
-                console.log({ data });
                 history.push({ pathname: "/", state: { isPost: true } });
               });
           }}

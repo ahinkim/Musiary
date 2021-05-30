@@ -1,9 +1,9 @@
 const { User: UserSchema, Music: MusicSchema } = require("../schema");
 
-const createMusic = async (id, title, src, mood) => {
+const createMusic = async (id, title, src, mood, coverImg) => {
   return await MusicSchema.findOrCreate({
     where: { id },
-    defaults: { id, title, src, mood },
+    defaults: { id, title, src, mood, coverImg },
   });
 };
 
@@ -21,7 +21,7 @@ const getMusicHistory = async (id) => {
   });
   const [music] = await MusicSchema.findAll();
   return await user.getMusic({
-    attributes: ["id", "title", "src", "mood"],
+    attributes: ["id", "title", "src", "mood", "coverImg"],
   });
 };
 

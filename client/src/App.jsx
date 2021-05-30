@@ -12,6 +12,7 @@ import MenuPage from "./page/MenuPage";
 import MyPage from "./page/MyPage";
 import Auth from "./hoc/Auth";
 import PlayMusic from "./page/PlayMusic";
+import AudioProvider from "./context/AudioProvider";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -26,34 +27,24 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  React.useEffect(() => {});
-
   return (
     <>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" component={Auth(Trending)} exact />
-          <Route path="/login" component={Login} exact />
-          <Route path="/write" exact component={Auth(DiaryWrite)} />
-          <Route path="/history/music" exact>
-            <MusicHistory />
-          </Route>
-          <Route path="/history/diary" exact>
-            <DiaryHistory />
-          </Route>
-          <Route path="/history/diary/:id">
-            <DiaryDetail />
-          </Route>
-          <Route path="/menu" exact>
-            <MenuPage />
-          </Route>
-          <Route path="/mypage" component={Auth(MyPage)} exact />
-          <Route path="/play" exact>
-            <PlayMusic />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <AudioProvider>
+        <GlobalStyle />
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" component={Auth(Trending)} exact />
+            <Route path="/login" component={Login} exact />
+            <Route path="/write" exact component={Auth(DiaryWrite)} />
+            <Route path="/history/music" exact component={Auth(MusicHistory)} />
+            <Route path="/history/diary" exact component={Auth(DiaryHistory)} />
+            <Route path="/history/diary/:id" component={Auth(DiaryDetail)} />
+            <Route path="/menu" exact component={Auth(MenuPage)} />
+            <Route path="/mypage" component={Auth(MyPage)} exact />
+            <Route path="/play" exact component={Auth(PlayMusic)} />
+          </Switch>
+        </BrowserRouter>
+      </AudioProvider>
     </>
   );
 }

@@ -48,6 +48,20 @@ const getTrendingMusic = async () => {
   }
 };
 
+const makePlayHistory = async (id, title, src, mood, coverImg) => {
+  try {
+    await server.post("/music/play", {
+      id,
+      title,
+      src,
+      mood,
+      coverImg,
+    });
+  } catch (e) {
+    throw new Error("error");
+  }
+};
+
 const ApiRequest = {
   server,
   loginRequest,
@@ -55,6 +69,7 @@ const ApiRequest = {
   getTodayDiary,
   getDiaryHistory,
   getTrendingMusic,
+  makePlayHistory,
 };
 
 export default ApiRequest;

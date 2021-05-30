@@ -1,6 +1,5 @@
 import React from "react";
 import { getContentByMood } from "../asset/Content";
-import { ExampleImg } from "../asset/ExampleImg";
 import Header from "../component/Header";
 import MusicList from "../component/MusicList";
 import NowPlaying from "../component/NowPlaying";
@@ -8,16 +7,16 @@ import Text from "../component/Text";
 import useTodayDiary from "../hook/useTodayDiary";
 import { useHistory, useLocation } from "react-router";
 import ApiRequest from "../util/ApiRequest";
+import useAudio from "../hook/useAudio";
 
 export default function Trending() {
-  const [songs, setSongs] = React.useState([]);
+  const musicProps = useAudio();
   const history = useHistory();
   const location = useLocation();
   const { diaries, isLoading, isError } = useTodayDiary();
 
   React.useEffect(() => {
     (async () => {
-      console.log(diaries, isLoading);
       if (isLoading) return;
       if (diaries === null) return;
       if (!isLoading && diaries.length === 0) {
@@ -29,8 +28,18 @@ export default function Trending() {
       }
       try {
         const res = await ApiRequest.server.get(`/music?mood=${diaries[0].mood}`);
-        const musics = res.data.musics.map((music) => ({ title: music.title, src: music.src, coverImg: music.waveform }));
-        setSongs(musics);
+        const musics = res.data.musics.map((music) => ({
+          title: music.title,
+          src: music.src,
+          coverImg: music.waveform,
+          id: music.id,
+          mood: music.mood,
+        }));
+        if (musicProps.current !== -1) {
+          musicProps.setInfo({ playList: musics, current: musicProps.current });
+        } else {
+          musicProps.setInfo({ playList: musics, current: -1 });
+        }
       } catch (e) {}
     })();
   }, [isLoading, diaries]);
@@ -51,7 +60,7 @@ export default function Trending() {
           >
             {diaries.length > 0 && <Text size={12}>{getContentByMood(diaries[0].mood)}</Text>}
           </Header>
-          <MusicList list={songs} />
+          <MusicList list={musicProps.playList} />
           <NowPlaying />
         </>
       )}

@@ -34,10 +34,12 @@ const getMusicByMood = async (mood) => {
 
   const { data } = await audioApi.searchTracks(queryParams);
   return data.map((v) => ({
+    id: Number(v.id),
     src: v.assets.preview_mp3.url,
     title: v.title,
     description: v.description,
     waveform: v.assets.waveform.url,
+    mood: moodConverter.musicToDiary(mood),
   }));
 };
 
@@ -50,10 +52,12 @@ const getPopularMusicByMood = async (mood) => {
 
   const { data } = await audioApi.searchTracks(queryParams);
   return data.map((v) => ({
+    id: Number(v.id),
     src: v.assets.preview_mp3.url,
     title: v.title,
     description: v.description,
     waveform: v.assets.waveform.url,
+    mood: moodConverter.musicToDiary(mood),
   }));
 };
 

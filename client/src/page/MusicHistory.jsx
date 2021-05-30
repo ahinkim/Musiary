@@ -10,8 +10,6 @@ import Text from "../component/Text";
 import useMusicHistory from "../hook/useMusicHistory";
 
 export default function MusicHistory() {
-  const createDummySong = () => ({ title: "Happy", coverImg: ExampleImg.HAPPY_COVER });
-  const dummySongs = new Array(20).fill(createDummySong());
   const history = useHistory();
   const { musicHistory, isLoading: isMusicHistoryLoading } = useMusicHistory();
   if (isMusicHistoryLoading) return <div></div>;
@@ -33,9 +31,11 @@ export default function MusicHistory() {
       {musicHistory.musics.length > 0 ? (
         <MusicList
           list={musicHistory.musics.map((music) => ({
+            id: music.id,
             title: music.title,
-            coverImg: music.waveform,
+            coverImg: music.coverImg,
             src: music.src,
+            mood: music.mood,
           }))}
         />
       ) : (

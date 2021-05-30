@@ -39,6 +39,7 @@ export default function MenuPage() {
   const { musics, isLoading: isMusicLoading } = useTrendingMusic();
   const { musicHistory, isLoading: isMusicHistoryLoading } = useMusicHistory();
   if (isDiaryLoading || isMusicLoading || isMusicHistoryLoading) return <div></div>;
+
   return (
     <>
       <Header
@@ -82,10 +83,12 @@ export default function MenuPage() {
 
             {musicHistory.musics.length > 0 ? (
               <MusicList
-                list={musicHistory.musics[musicHistory.musics.length - 1].map((music) => ({
+                list={[musicHistory.musics[musicHistory.musics.length - 1]].map((music) => ({
                   title: music.title,
-                  coverImg: music.waveform,
+                  coverImg: music.coverImg,
                   src: music.src,
+                  mood: music.mood,
+                  id: music.id,
                 }))}
               />
             ) : (
@@ -109,7 +112,13 @@ export default function MenuPage() {
           <CardSongWrapper>
             {musics && (
               <MusicList
-                list={musics.slice(0, 3).map((music) => ({ title: music.title, coverImg: music.waveform, src: music.src }))}
+                list={musics.slice(0, 3).map((music) => ({
+                  title: music.title,
+                  coverImg: music.waveform,
+                  src: music.src,
+                  id: music.id,
+                  mood: music.mood,
+                }))}
               />
             )}
           </CardSongWrapper>

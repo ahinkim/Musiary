@@ -21,9 +21,9 @@ const CoverImage = styled.img`
   height: 45px;
 `;
 
-export default function MusicItem({ title, coverImg }) {
+export default function MusicItem({ title, coverImg, onClick }) {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <CoverImage src={coverImg} alt="music_cover" />
       <SongInfoWrapper>
         <Text bold size={13}>

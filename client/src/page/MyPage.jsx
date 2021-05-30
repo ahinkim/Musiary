@@ -26,8 +26,6 @@ const CardWrapper = styled.div`
 `;
 
 export default function MenuPage() {
-  const createDummySong = () => ({ title: "Happy", coverImg: ExampleImg.HAPPY_COVER });
-  const threeSongs = new Array(3).fill(createDummySong());
   const history = useHistory();
   const { diaries, isLoading: isDiaryLoading } = useDiaryHistory();
   const { musicHistory, isLoading: isMusicHistoryLoading } = useMusicHistory();
@@ -90,9 +88,13 @@ export default function MenuPage() {
           <CardSongWrapper>
             {musicHistory.musics.length > 0 ? (
               <MusicList
-                list={musicHistory.musics
-                  .slice(0, 3)
-                  .map((music) => ({ title: music.title, coverImg: music.waveform, src: music.src }))}
+                list={musicHistory.musics.slice(0, 3).map((music) => ({
+                  title: music.title,
+                  coverImg: music.coverImg,
+                  src: music.src,
+                  mood: music.mood,
+                  id: music.id,
+                }))}
               />
             ) : (
               <NoMusicFunction>{content.NO_MUSIC}</NoMusicFunction>

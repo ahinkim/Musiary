@@ -31,14 +31,11 @@ const getTrendingMusicByMood = async (req, res) => {
 //***** /music/play
 const playMusic = async (req, res) => {
   const { id: userId } = req.user;
-  const { id, title, src, mood } = req.body;
-
-  if (!validation.isValidMusicPlayBody(id, title, src, mood)) {
-    return res.status(statusCode.BAD_REQUEST).json(jsonResponse(responseMessage.BODY_VALUE_ERROR));
-  }
+  const { id, title, src, mood, coverImg } = req.body;
+  console.log(req.body);
 
   try {
-    const musics = await musicModel.createMusic(id, title, src, mood);
+    const musics = await musicModel.createMusic(id, title, src, mood, coverImg);
     await UserMusicModel.createUserMusic(userId, id);
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK));
   } catch (e) {

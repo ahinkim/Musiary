@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: false,
       },
+      coverImg: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+        unique: false,
+      },
     },
     {
       charset: "utf8",
