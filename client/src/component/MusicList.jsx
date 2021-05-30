@@ -14,7 +14,7 @@ export default function MusicList({ list }) {
   const musicProps = useAudio();
   return (
     <Wrapper>
-      {[...list].map(({ title, coverImg, src, id, mood }, idx) => (
+      {[...list].map(({ title, coverImg, src, id, mood, other = false }, idx) => (
         <MusicItem
           title={title}
           coverImg={coverImg}
@@ -22,8 +22,15 @@ export default function MusicList({ list }) {
           src={src}
           mood={mood}
           onClick={async () => {
+            if (other) {
+              other();
+              return;
+            }
+
             await ApiRequest.makePlayHistory(id, title, src, mood, coverImg);
+
             musicProps.setInfo({ playList: musicProps.playList, current: idx });
+
             if (musicProps.isPlaying) {
               musicProps.pause();
             }

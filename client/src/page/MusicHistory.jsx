@@ -7,11 +7,27 @@ import MusicList from "../component/MusicList";
 import NoMusicFunction from "../component/NoMusic";
 import NowPlaying from "../component/NowPlaying";
 import Text from "../component/Text";
+import useAudio from "../hook/useAudio";
 import useMusicHistory from "../hook/useMusicHistory";
 
 export default function MusicHistory() {
   const history = useHistory();
   const { musicHistory, isLoading: isMusicHistoryLoading } = useMusicHistory();
+  const musicProps = useAudio();
+
+  React.useEffect(() => {
+    if (!musicHistory) return;
+    if (!musicHistory.musics) return;
+
+    const currentListeningSong = musicProps.playList[musicProps.current];
+    if (!currentListeningSong) {
+      musicProps.setInfo({ playList: [...musicHistory.musics], current: -1 });
+      return;
+    }
+
+    musicProps.setInfo({ playList: [currentListeningSong, ...musicHistory.musics], current: 0 });
+  }, [musicHistory]);
+
   if (isMusicHistoryLoading) return <div></div>;
 
   return (
@@ -30,7 +46,7 @@ export default function MusicHistory() {
       </Header>
       {musicHistory.musics.length > 0 ? (
         <MusicList
-          list={musicHistory.musics.map((music) => ({
+          list={musicProps.playList.map((music) => ({
             id: music.id,
             title: music.title,
             coverImg: music.coverImg,
@@ -41,7 +57,7 @@ export default function MusicHistory() {
       ) : (
         <NoMusicFunction>{content.NO_MUSIC}</NoMusicFunction>
       )}
-      <NowPlaying />
+      {musicProps.playList[musicProps.current] && <NowPlaying />}
     </>
   );
 }

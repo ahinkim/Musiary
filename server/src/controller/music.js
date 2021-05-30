@@ -10,7 +10,9 @@ const validation = require("../util/validation");
 const getMusicsByMood = async (req, res) => {
   try {
     const mood = req.query.mood;
+    console.log(mood);
     const musics = await apiRequest.getMusicByMood(mood);
+    console.log(musics);
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK, { musics: musics }));
   } catch (e) {
     res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));
@@ -37,6 +39,7 @@ const playMusic = async (req, res) => {
   try {
     const musics = await musicModel.createMusic(id, title, src, mood, coverImg);
     await UserMusicModel.createUserMusic(userId, id);
+
     res.status(statusCode.OK).json(jsonResponse(responseMessage.OK));
   } catch (e) {
     res.status(statusCode.INTERNAL_SERVER_ERROR).json(jsonResponse(responseMessage.INTERNAL_SERVER_ERROR));

@@ -33,6 +33,7 @@ const getMusicByMood = async (mood) => {
   };
 
   const { data } = await audioApi.searchTracks(queryParams);
+
   return data.map((v) => ({
     id: Number(v.id),
     src: v.assets.preview_mp3.url,
