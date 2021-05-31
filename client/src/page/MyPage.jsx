@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { content } from "../asset/Content";
-import { ExampleImg } from "../asset/ExampleImg";
 import Icon from "../asset/Icon";
 import { color } from "../asset/palette";
 import CardSongWrapper from "../component/CardSongWrapper";

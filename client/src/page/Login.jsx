@@ -7,7 +7,6 @@ import { createGlobalStyle } from "styled-components";
 import { content } from "../asset/Content";
 import useSWR from "swr";
 import ApiRequest from "../util/ApiRequest";
-import useAsync from "../hook/useAsync";
 
 const GlobalStyle = createGlobalStyle`
   body{

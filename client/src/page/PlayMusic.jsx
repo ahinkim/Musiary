@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ExampleImg } from "../asset/ExampleImg";
 import Icon from "../asset/Icon";
 import { color } from "../asset/palette";
 import { useToggle } from "../hook/useToggle";

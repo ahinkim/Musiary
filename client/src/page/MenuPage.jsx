@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { content } from "../asset/Content";
-import { ExampleImg } from "../asset/ExampleImg";
 import Icon from "../asset/Icon";
 import { color } from "../asset/palette";
 import CardSongWrapper from "../component/CardSongWrapper";
@@ -32,8 +31,6 @@ const CardWrapper = styled.div`
 `;
 
 export default function MenuPage() {
-  const createDummySong = () => ({ title: "Happy", coverImg: ExampleImg.HAPPY_COVER });
-  const oneSong = new Array(1).fill(createDummySong());
   const history = useHistory();
   const { diaries, isLoading: isDiaryLoading } = useDiaryHistory();
   const { musics, isLoading: isMusicLoading } = useTrendingMusic();

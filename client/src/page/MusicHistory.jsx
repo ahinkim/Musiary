@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { content } from "../asset/Content";
-import { ExampleImg } from "../asset/ExampleImg";
 import Header from "../component/Header";
 import MusicList from "../component/MusicList";
 import NoMusicFunction from "../component/NoMusic";
