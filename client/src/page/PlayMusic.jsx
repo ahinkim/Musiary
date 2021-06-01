@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Icon from "../asset/Icon";
 import { color } from "../asset/palette";
-import { useToggle } from "../hook/useToggle";
 import CSSUnit from "../util/CSSUnit";
 import Header from "../component/Header";
 import { content } from "../asset/Content";
