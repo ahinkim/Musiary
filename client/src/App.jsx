@@ -13,6 +13,7 @@ import MyPage from "./page/MyPage";
 import Auth from "./hoc/Auth";
 import PlayMusic from "./page/PlayMusic";
 import AudioProvider from "./context/AudioProvider";
+import Splash from "./page/Splash";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -42,6 +43,7 @@ function App() {
             <Route path="/menu" exact component={Auth(MenuPage)} />
             <Route path="/mypage" component={Auth(MyPage)} exact />
             <Route path="/play" exact component={Auth(PlayMusic)} />
+            <Route path="/splash" component={Auth(Splash)} />
           </Switch>
         </BrowserRouter>
       </AudioProvider>
