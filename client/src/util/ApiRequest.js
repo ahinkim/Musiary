@@ -58,7 +58,7 @@ const makePlayHistory = async (id, title, src, mood, coverImg) => {
       coverImg,
     });
   } catch (e) {
-    throw new Error("error");
+    throw new Error(e);
   }
 };
 

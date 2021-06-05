@@ -51,7 +51,7 @@ const useAudio = () => {
     setURL(nextMusic.src);
     audio.current.play();
 
-    await ApiRequest.makePlayHistory(nextMusic.id, nextMusic.title, nextMusic.src, nextMusic.mood);
+    await ApiRequest.makePlayHistory(nextMusic.id, nextMusic.title, nextMusic.src, nextMusic.mood, nextMusic.coverImg);
 
     setInfo({ playList, current: nextCurrent });
   };
@@ -76,7 +76,7 @@ const useAudio = () => {
     setURL(nextMusic.src);
     audio.current.play();
 
-    await ApiRequest.makePlayHistory(nextMusic.id, nextMusic.title, nextMusic.src, nextMusic.mood);
+    await ApiRequest.makePlayHistory(nextMusic.id, nextMusic.title, nextMusic.src, nextMusic.mood, nextMusic.coverImg);
 
     setInfo({ playList, current: nextCurrent });
   };

@@ -61,14 +61,16 @@ export default function DiaryWrite() {
         />
         <ButtonWrapper
           onClick={() => {
-            ApiRequest.server
-              .post("/diary", {
-                title: "Title",
-                content: diaryContent,
-              })
-              .then((data) => {
-                history.push({ pathname: "/", state: { isPost: true } });
-              });
+            if (window.confirm("일기를 작성하시겠습니까?")) {
+              ApiRequest.server
+                .post("/diary", {
+                  title: "Title",
+                  content: diaryContent,
+                })
+                .then((data) => {
+                  history.push({ pathname: "/", state: { isPost: true } });
+                });
+            }
           }}
         >
           <Button>{content.SAVE_AND_RECOMMEND_SONG}</Button>
