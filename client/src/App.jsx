@@ -28,6 +28,18 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [isSplashRendered, setIsSplashRendered] = React.useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsSplashRendered(true);
+    }, 2000);
+  }, []);
+
+  if (!isSplashRendered) {
+    return <Splash />;
+  }
+
   return (
     <>
       <AudioProvider>
