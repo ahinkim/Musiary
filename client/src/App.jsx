@@ -31,9 +31,14 @@ function App() {
   const [isSplashRendered, setIsSplashRendered] = React.useState(false);
 
   React.useEffect(() => {
-    setTimeout(() => {
+    const socialLogin = window.sessionStorage.getItem("socialLogin");
+    if (socialLogin === null) {
+      setTimeout(() => {
+        setIsSplashRendered(true);
+      }, 2000);
+    } else {
       setIsSplashRendered(true);
-    }, 2000);
+    }
   }, []);
 
   if (!isSplashRendered) {

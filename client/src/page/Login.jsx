@@ -102,7 +102,10 @@ export default function Login() {
           </MusiaryBox>
         </CenterWrapper>
 
-        <ButtonWrapper href="http://localhost:8000/api/auth/kakao">
+        <ButtonWrapper
+          href="http://localhost:8000/api/auth/kakao"
+          onClick={() => window.sessionStorage.setItem("socialLogin", "true")}
+        >
           <Icon size={27} type="CHAT_FILL" />
           <ButtonVerticleBar />
           <ButtonTextWrapper>
