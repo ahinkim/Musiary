@@ -76,17 +76,9 @@ Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크이다.
 
 - 링크: https://www.shutterstock.com/developers/documentation
 
-## 3. Server와 Client 작동 방식
+## 3. 백엔드
 
-![](./readme_assets/way-to-communicate.png)
-
-Musiary 웹앱은 서버 클라이언트 시스템으로 클라이언트가 서버에 자원을 저장하고 필요할 때마다 가져다 쓰는 방식으로 작동한다.
-
-HTTP 통신 방식으로 클라이언트가 요청을 보낼 때마다 Server가 응답을 하는 통신이다.
-
-## 4. 백엔드
-
-### 4-1. 구조
+### 3-1. 구조
 
 ![백엔드 구조](./readme_assets/back-arch.png)
 
@@ -129,7 +121,7 @@ HTTP 통신 방식으로 클라이언트가 요청을 보낼 때마다 Server가
 
 - 카카오에 사용자 정보 등에 대한 서비스 요청을 할 수 있다.
 
-### 4-2. DB 설계
+### 3-2. DB 설계
 
 ### 1. DB 테이블 설계
 
@@ -167,14 +159,14 @@ HTTP 통신 방식으로 클라이언트가 요청을 보낼 때마다 Server가
 
   관계: user 테이블과 다대일 관계를 맺는다.
 
-### 4-3. API Docs
+### 3-3. API Docs
 
 ![API-Docs](./readme_assets/api-docs.png)
 서버에서 프론트에게 직접적으로 제공해주는 핵심 API기능들이다. REST API 규칙을 기반으로 endpoint에 콜백함수의 경로를 설정한다.
 
-## 5. 프론트 엔드
+## 4. 프론트 엔드
 
-### 5-1. 구조
+### 4-1. 구조
 
 ![프론트구조](./readme_assets/front-arch.png)
 
@@ -212,14 +204,10 @@ HTTP 통신 방식으로 클라이언트가 요청을 보낼 때마다 Server가
 
    useAudio.js 커스텀 훅에서 Audio 객체를 이용한 여러가지 기능을 함수로 묶은 커스텀 훅을 만들어 여러 컴포넌트에서 사용하고 있다.
 
-## 6. 협업 수단
+## 5. 협업 수단
 
 Github  
 https://github.com/HyeyulKim/OpenSource_Team13
 
 Notion  
 https://www.notion.so/SW-7d66b511d2eb41c39754df62ac83cf0f
-
-## 7. 팀원 기여도
-
-![dedicate](./readme_assets/dedicate.png)
