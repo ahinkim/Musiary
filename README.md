@@ -69,7 +69,7 @@ Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크이다.
 
 - 링크: https://www.saltlux.ai/portal/api_detail?id=category14
 
-**Shutter Stock Musci API**
+**Shutter Stock Music API**
 
 ![](./readme_assets/shutterstock.png)
 감정을 기반으로 노래를 추천해주는 API이다.
