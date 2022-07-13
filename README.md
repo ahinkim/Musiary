@@ -159,11 +159,6 @@ Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크이다.
 
   관계: user 테이블과 다대일 관계를 맺는다.
 
-### 3-3. API Docs
-
-![API-Docs](./readme_assets/api-docs.png)
-서버에서 프론트에게 직접적으로 제공해주는 핵심 API기능들이다. REST API 규칙을 기반으로 endpoint에 콜백함수의 경로를 설정한다.
-
 ## 4. 프론트 엔드
 
 ### 4-1. 구조
