@@ -203,11 +203,3 @@ Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크이다.
 8. Hook 폴더
 
    useAudio.js 커스텀 훅에서 Audio 객체를 이용한 여러가지 기능을 함수로 묶은 커스텀 훅을 만들어 여러 컴포넌트에서 사용하고 있다.
-
-## 5. 협업 수단
-
-Github  
-https://github.com/HyeyulKim/OpenSource_Team13
-
-Notion  
-https://www.notion.so/SW-7d66b511d2eb41c39754df62ac83cf0f
