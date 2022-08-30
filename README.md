@@ -77,7 +77,7 @@ Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크이다.
 
 2. Initializer
 
-- Initializer폴더는 index.js에서 express 초기화하고 라우터 폴더로 라우팅 한다. mysql.js에서는 schema폴더와 함께 sequelize를 통해 데이터베이스 초기화 등 기본적인 서버 연결의 준비를 한다.
+- Initializer폴더는 index.js에서 express 초기화하고 라우터 폴더로 라우팅 한다. mysql.js 에서는 schema폴더와 함께 sequelize를 통해 데이터베이스 초기화 등 기본적인 서버 연결의 준비를 한다.
 
 3. schema
 
