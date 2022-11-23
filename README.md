@@ -114,7 +114,9 @@ Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크이다.
 
 ### 1. DB 테이블 설계
 
-![백엔드 테이블](![image](https://user-images.githubusercontent.com/75368687/203457098-8d12933b-cf46-4dbc-81d9-49238b3f8d50.png));
+- 백엔드 테이블
+![image](https://user-images.githubusercontent.com/75368687/203457178-e69bcb75-ce42-462f-bfe5-0c771158bbe1.png)
+
 
 ### 2. 테이블 속성과 관계
 
